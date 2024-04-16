@@ -9,10 +9,79 @@ import UIKit
 
 class ViewControllerJoin: UIViewController {
 
+    @IBOutlet weak var nameOutlet: UITextField!
+    
+    @IBOutlet weak var codeOutlet: UITextField!
+    var alertController: UIAlertController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        alertController = UIAlertController(title: "Class joined", message: "YAY", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "EPIC", style: .default) { (action) in
+            // handle response here.
+            
+        }
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func joinAction(_ sender: Any) {
+        let name = nameOutlet.text ?? ""
+        let code = codeOutlet.text ?? ""
+        for x in 0...appData.classes.count-1 {
+            if appData.classes[x].key == code{
+                appData.classes[x].Students.append(name)
+                appData.classes[x].studentPoints.append(0)
+                //appData.classes[x].saveToFirebase()
+                appData.classes[x].updateFirebase(dict: appData.classes[x].convertToDict())
+                
+                
+                
+                for y in 0...appData.classes[x].Students.count-1{
+                    if appData.classes[x].Students[y] == name {
+                        nameData.nameIndex = y
+                    }
+                }
+            }
+            
+            
+        
+            
+        
+        }
+        
+        
+        alertController.message = "Class code = \(code)"
+        present(alertController, animated: true) {
+            // optional code for what happens after the alert controller has finished presenting
+        }
+        
+        nameData.name = name
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(nameData.name) {
+                        nameData.defaults.set(encoded, forKey: "name")
+                    }
+        
+        
+        nameData.tOrS = "Student"
+        
+        //let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(nameData.tOrS) {
+                        nameData.defaults.set(encoded, forKey: "tOrS")
+                    }
+        
+        if let encoded = try? encoder.encode(nameData.tOrS) {
+                        nameData.defaults.set(encoded, forKey: "nameIndex")
+                    }
+        
+
+
+        
     }
     
 
