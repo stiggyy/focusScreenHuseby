@@ -62,8 +62,14 @@ class ViewControllerFocussed: UIViewController {
         }
         
         
+        
         classNameOutlet.text = "Class name: \(appData.classSelected.classroomName)"
         canFocusLabel.text = "Points: \(appData.classSelected.studentPoints[nameData.nameIndex])"
+        
+        
+        if nameData.tOrS == "Teacher" {
+            canFocusLabel.text = "You are the teacher: click the button to begin class check in"
+        }
     }
     @IBAction func focusAction(_ sender: Any) {
         

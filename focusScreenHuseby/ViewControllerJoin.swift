@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewControllerJoin: UIViewController {
+class ViewControllerJoin: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var nameOutlet: UITextField!
     
@@ -26,6 +26,9 @@ class ViewControllerJoin: UIViewController {
         alertController.addAction(OKAction)
 
         // Do any additional setup after loading the view.
+        
+        nameOutlet.delegate = self
+        codeOutlet.delegate = self
     }
     
     
@@ -95,4 +98,10 @@ class ViewControllerJoin: UIViewController {
     }
     */
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           nameOutlet.resignFirstResponder()
+           codeOutlet.resignFirstResponder()
+           
+           return true
+       }
 }

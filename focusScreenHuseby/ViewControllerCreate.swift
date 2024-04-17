@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewControllerCreate: UIViewController {
+class ViewControllerCreate: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var classNameOutlet: UITextField!
     
@@ -27,6 +27,9 @@ class ViewControllerCreate: UIViewController {
         alertController.addAction(OKAction)
 
         // Do any additional setup after loading the view.
+        
+        classNameOutlet.delegate = self
+        nameOutlet.delegate = self
     }
     
     @IBAction func createClassAction(_ sender: Any) {
@@ -67,5 +70,12 @@ class ViewControllerCreate: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           classNameOutlet.resignFirstResponder()
+           nameOutlet.resignFirstResponder()
+           
+           return true
+       }
 
 }
