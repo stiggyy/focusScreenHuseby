@@ -13,7 +13,7 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameOutlet: UITextField!
     
-    var code: String = "0000"
+    var code = 0000
     var alertController: UIAlertController!
     
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
         
         newClass.saveToFirebase()
         //print(newClass.key)
-        code = newClass.key
+        code = newClass.code
         
         nameData.name = name
         let encoder = JSONEncoder()

@@ -17,6 +17,8 @@ class Classroom{
     var classroomName:String
     var ref = Database.database().reference()
     var canFocus: Bool = false
+    
+    var code = 0
     var key = ""
     
     
@@ -32,10 +34,12 @@ class Classroom{
     init(name: String, classname: String) {
         self.nameTeacher = name
         self.classroomName = classname
+        self.makeCode()
         
     }
     
     init(dict: [String: Any]){
+        
         if let a = dict["class"] as? String{
             self.classroomName = a
         } else {
@@ -72,6 +76,12 @@ class Classroom{
         } else{
             self.storePoints = [0]
         }
+        if let code = dict["code"] as? Int {
+            self.code = code
+        } else {
+            self.code = 00000
+            
+        }
     }
     func makeTrue(){
         canFocus = true
@@ -88,10 +98,14 @@ class Classroom{
     
     func saveToFirebase(){
         //saving to dictionary
-        let dict = ["teacher": nameTeacher, "class": classroomName, "students": Students, "canFocus": canFocus, "points": studentPoints, "storeList": store, "sPoints": storePoints] as [String : Any]
+       //makeKey()
+        let dict = ["teacher": nameTeacher, "class": classroomName, "students": Students, "canFocus": canFocus, "points": studentPoints, "storeList": store, "sPoints": storePoints, "code": code] as [String : Any]
+        
         ref.child("classroom").childByAutoId().setValue(dict)
         
-        key = ref.child("classroom").childByAutoId().key ?? "0"
+            // ref.child("classroom").
+        
+       // key = ref.child("classroom").childByAutoId().key ?? "0"
         
         print(key)
         
@@ -107,7 +121,7 @@ class Classroom{
     }
     
     func convertToDict() -> [String: Any]{
-        let dict = ["teacher": nameTeacher, "class": classroomName, "students": Students, "canFocus": canFocus, "points": studentPoints, "storeList": store, "sPoints": storePoints] as [String : Any]
+        let dict = ["teacher": nameTeacher, "class": classroomName, "students": Students, "canFocus": canFocus, "points": studentPoints, "storeList": store, "sPoints": storePoints, "code": code] as [String : Any]
         return dict
     }
     
@@ -123,7 +137,17 @@ class Classroom{
         })
     }
 
-
+    func makeCode(){
+        var newCode = Int.random(in: 1000...99999)
+        for i in appData.classes {
+            if i.code == newCode{
+                newCode = Int.random(in: 1000...99999)
+            }
+        }
+        
+        self.code = newCode
+        
+    }
     
 }
 

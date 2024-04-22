@@ -41,9 +41,14 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         
         if nameData.tOrS == "Student"{
             xyz.text = "\(appData.classSelected.studentPoints[nameData.nameIndex]), \(appData.classSelected.classroomName)"
+            
+            
         } else {
             xyz.text = "You are the teacher"
+            
         }
+        
+        
 
         // Do any additional setup after loading the view.
     }

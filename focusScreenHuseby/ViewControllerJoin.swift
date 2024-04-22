@@ -34,14 +34,16 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
     
     @IBAction func joinAction(_ sender: Any) {
         let name = nameOutlet.text ?? ""
-        let code = codeOutlet.text ?? ""
+        let code = Int(codeOutlet.text!) ?? 00000
+        var joined = "No class joined,"
         for x in 0...appData.classes.count-1 {
-            if appData.classes[x].key == code{
+            if appData.classes[x].code == code{
                 appData.classes[x].Students.append(name)
                 appData.classes[x].studentPoints.append(0)
                 //appData.classes[x].saveToFirebase()
                 appData.classes[x].updateFirebase(dict: appData.classes[x].convertToDict())
                 
+                joined = "Class joined"
                 
                 
                 for y in 0...appData.classes[x].Students.count-1{
@@ -58,7 +60,7 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
         }
         
         
-        alertController.message = "Class code = \(code)"
+        alertController.message = "\(joined) Class code = \(code)"
         present(alertController, animated: true) {
             // optional code for what happens after the alert controller has finished presenting
         }
