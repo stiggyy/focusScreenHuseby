@@ -55,7 +55,9 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        if nameData.tOrS == "Student" {
+            
+        }
     }
     
 
