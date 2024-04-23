@@ -12,7 +12,9 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return appData.classSelected.store.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,7 +58,12 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         if nameData.tOrS == "Student" {
-            
+            addItemButtonOutlet.isHidden = true
+        }
+        if nameData.tOrS == "Teacher" {
+            addItemButtonOutlet.isHidden = false        }
+        else {
+            addItemButtonOutlet.isHidden = true
         }
     }
     
