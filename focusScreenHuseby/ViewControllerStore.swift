@@ -12,15 +12,16 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return appData.classSelected.store.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        cell.textLabel?.text = "\(appData.classSelected.store[indexPath.row]), \(appData.classSelected.storePoints[indexPath.row])"
         return cell
     }
     
- 
+    @IBOutlet weak var addItemButtonOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var xyz: UILabel!
@@ -51,6 +52,10 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
 

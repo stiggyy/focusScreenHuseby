@@ -353,7 +353,7 @@
                                                     <attributedString key="attributedSubtitle"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="addStoreItem:" destination="QQ6-c2-bws" eventType="touchUpInside" id="3Mi-hh-0xZ"/>
+                                                    <action selector="addStoreItem:" destination="QQ6-c2-bws" eventType="touchUpInside" id="oSA-lB-tgR"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -391,6 +391,7 @@
                     <tabBarItem key="tabBarItem" title="Store" image="storefront.fill" catalog="system" id="avq-yy-Tcg"/>
                     <navigationItem key="navigationItem" id="eTi-Rb-hLP"/>
                     <connections>
+                        <outlet property="addItemButtonOutlet" destination="QHT-uK-EGh" id="o9e-w2-NpM"/>
                         <outlet property="nameOutlet" destination="RcU-if-AqT" id="Owl-ut-svX"/>
                         <outlet property="pointsoutlet" destination="uDS-ky-JxI" id="pUV-z0-ulJ"/>
                         <outlet property="tableView" destination="fhd-cI-t7W" id="37g-Ft-XHi"/>

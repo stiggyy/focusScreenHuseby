@@ -24,13 +24,32 @@ class ViewControllerClasses: UIViewController, UITableViewDelegate,UITableViewDa
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        listOfClasses.removeAll()
+        tableView.reloadData()
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        listOfClasses.removeAll()
+        print("printing list of classes")
+        print(listOfClasses)
+        
+        tableView.reloadData()
+        
+        
+        let count = self.tableView(self.tableView, numberOfRowsInSection: 0)
+        listOfClasses = []
+            //  print("god save us all")
+    }
+    
+    //viewdid
+    
     override func viewWillAppear(_ animated: Bool) {
         
         listOfClasses.removeAll()
+        //tableView.
         tableView.reloadData()
         ref = Database.database().reference()
         
@@ -121,7 +140,7 @@ class ViewControllerClasses: UIViewController, UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
         
-        cell.textLabel?.text = "\(listOfClasses[indexPath.row].classroomName)"
+        cell.textLabel!.text = "\(listOfClasses[indexPath.row].classroomName)"
         return cell
     }
     
