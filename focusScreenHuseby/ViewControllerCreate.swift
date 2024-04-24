@@ -32,6 +32,10 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
         nameOutlet.delegate = self
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        nameOutlet.text = "\(nameData.name)"
+    }
     @IBAction func createClassAction(_ sender: Any) {
         let name = nameOutlet.text ?? ""
         let classname = classNameOutlet.text ?? ""

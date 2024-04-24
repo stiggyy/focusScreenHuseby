@@ -31,6 +31,9 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
         codeOutlet.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        nameOutlet.text = "\(nameData.name)"
+    }
     
     @IBAction func joinAction(_ sender: Any) {
         let name = nameOutlet.text ?? ""
