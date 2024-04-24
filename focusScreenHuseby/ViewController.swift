@@ -161,6 +161,8 @@ class appData{
     static var lockIn = false
     
     static var tOrS = "None"
+    
+    static var classHasSelected = false
 }
 
 class nameData: Codable{

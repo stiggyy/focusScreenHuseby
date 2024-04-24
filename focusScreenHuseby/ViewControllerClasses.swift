@@ -94,6 +94,7 @@ class ViewControllerClasses: UIViewController, UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toClass", sender: self)
         appData.classSelected = listOfClasses[indexPath.row]
+        appData.classHasSelected = true
     }
 
     /*

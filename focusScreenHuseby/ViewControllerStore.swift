@@ -12,8 +12,11 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return appData.classSelected.store.count ?? 0
+        if appData.classHasSelected{
+            return appData.classSelected.store.count ?? 0
+        } else {
+            return 0
+        }
         
     }
     
