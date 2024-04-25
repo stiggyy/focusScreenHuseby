@@ -9,7 +9,8 @@ import UIKit
 //help
 
 class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var alertController: UIAlertController!
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if appData.classHasSelected{
@@ -22,9 +23,12 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        cell.textLabel?.text = "\(appData.classSelected.store[indexPath.row]), \(appData.classSelected.storePoints[indexPath.row])"
+        cell.textLabel?.text = "\(appData.classSelected.store[indexPath.row]), \(appData.classSelected.storePoints[indexPath.row]) points"
         return cell
     }
+    
+    
+    @IBOutlet weak var classSelectedLabel: UILabel!
     
     @IBOutlet weak var addItemButtonOutlet: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -45,14 +49,22 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         tableView.delegate = self
         
-        if nameData.tOrS == "Student"{
-            xyz.text = "\(appData.classSelected.studentPoints[nameData.nameIndex]), \(appData.classSelected.classroomName)"
-            
-            
+        if appData.classHasSelected{
+            if nameData.tOrS == "Student"{
+                xyz.text = "\(appData.classSelected.studentPoints[nameData.nameIndex]), \(appData.classSelected.classroomName)"
+               
+                
+            } else {
+                xyz.text = "You are the teacher"
+                
+               
+            }
+            classSelectedLabel.text = "\(appData.classSelected.classroomName)"
         } else {
-            xyz.text = "You are the teacher"
-            
+            classSelectedLabel.text = "Go to classes and select a class"
         }
+        
+        
         
         
 
@@ -68,6 +80,25 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             addItemButtonOutlet.isHidden = true
         }
+        
+        if appData.classHasSelected{
+            if nameData.tOrS == "Student"{
+                xyz.text = "\(appData.classSelected.studentPoints[nameData.nameIndex]), \(appData.classSelected.classroomName)"
+               
+                
+            } else {
+                xyz.text = "You are the teacher"
+                
+               
+            }
+            classSelectedLabel.text = "\(appData.classSelected.classroomName)"
+        } else {
+            classSelectedLabel.text = "Go to classes and select a class"
+        }
+        
+        
+        
+         
     }
     
 
@@ -81,8 +112,57 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
             appData.classSelected.storePoints.append(p)
             appData.classSelected.updateFirebase(dict: appData.classSelected.convertToDict())
         }
+        
+        tableView.reloadData()
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if nameData.tOrS == "Student"{
+            alertController = UIAlertController(title: "Bought \(appData.classSelected.store[indexPath.row]) for \(appData.classSelected.storePoints[indexPath.row]) points", message: "Click confirm to close out", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+                // handle response here.
+                appData.classSelected.studentPoints[nameData.nameIndex] = appData.classSelected.studentPoints[nameData.nameIndex] - appData.classSelected.storePoints[nameData.nameIndex]
+                
+                appData.classSelected.updateFirebase(dict: appData.classSelected.convertToDict())
+                self.xyz.text = "points : \(appData.classSelected.studentPoints[nameData.nameIndex])"
+            }
+            // add the OK action to the alert controller
+            alertController.addAction(OKAction)
+            
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+                self.xyz.text = "points : \(appData.classSelected.studentPoints[nameData.nameIndex])"
+            }
+            
+            xyz.text = "points : \(appData.classSelected.studentPoints[nameData.nameIndex])"
+            
+        }
+        else if nameData.tOrS == "Teacher"{
+            alertController = UIAlertController(title: "Delete \(appData.classSelected.store[indexPath.row]), \(appData.classSelected.storePoints[indexPath.row]) points?", message: "Click confirm to delete", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+                // handle response here.
+                appData.classSelected.store.remove(at: indexPath.row)
+                appData.classSelected.storePoints.remove(at: indexPath.row)
+                appData.classSelected.updateFirebase(dict: appData.classSelected.convertToDict())
+                tableView.reloadData()
+            }
+            // add the OK action to the alert controller
+            alertController.addAction(OKAction)
+            
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+                //self.xyz.text = "points : \(appData.classSelected.studentPoints[nameData.nameIndex])"
+            }
+            
+            
+            
+        }
+    }
     
     /*
     // MARK: - Navigation
