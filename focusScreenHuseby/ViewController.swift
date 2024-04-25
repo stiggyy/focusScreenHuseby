@@ -185,6 +185,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let defaults = UserDefaults.standard
+        
+      
+        
+        
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         // Do any additional setup after loading the view.

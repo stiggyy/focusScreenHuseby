@@ -18,6 +18,7 @@ class ViewControllerFocussed: UIViewController {
     
     @IBOutlet weak var canFocusLabel: UILabel!
     
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +123,15 @@ class ViewControllerFocussed: UIViewController {
         if abc {
             alertController.message = "Click the button to end student focus"
             let endAction = UIAlertAction(title: "End Student Focus", style: .default) { (action) in
+                appData.lockIn = false
+                print("mission flopped")
+                self.defaults.set(appData.lockIn, forKey: "theLock")
+        
+                    let alert = UIAlertController(title: "Oops!", message: "Failed to Focus", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "ok", style: .default)
+                    alert.addAction(action)
+                self.present(alert, animated: true)
+                
                 
               //  appData.classSelected.checkNew()
             
