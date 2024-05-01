@@ -98,7 +98,7 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         
         
         
-         
+        tableView.reloadData()
     }
     
 
