@@ -38,55 +38,65 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
     @IBAction func joinAction(_ sender: Any) {
         let name = nameOutlet.text ?? ""
         let code = Int(codeOutlet.text!) ?? 00000
-        var joined = "No class joined,"
-        for x in 0...appData.classes.count-1 {
-            if appData.classes[x].code == code{
-                appData.classes[x].Students.append(name)
-                appData.classes[x].studentPoints.append(0)
-                //appData.classes[x].saveToFirebase()
-                appData.classes[x].updateFirebase(dict: appData.classes[x].convertToDict())
-                
-                joined = "Class joined"
-                
-                
-                for y in 0...appData.classes[x].Students.count-1{
-                    if appData.classes[x].Students[y] == name {
-                        nameData.nameIndex = y
+        
+        
+        if nameData.tOrS == "Student" || nameData.tOrS == "None"{
+            var joined = "No class joined,"
+            for x in 0...appData.classes.count-1 {
+                if appData.classes[x].code == code{
+                    appData.classes[x].Students.append(name)
+                    appData.classes[x].studentPoints.append(0)
+                    //appData.classes[x].saveToFirebase()
+                    appData.classes[x].updateFirebase(dict: appData.classes[x].convertToDict())
+                    
+                    joined = "Class joined"
+                    
+                    
+                    for y in 0...appData.classes[x].Students.count-1{
+                        if appData.classes[x].Students[y] == name {
+                            nameData.nameIndex = y
+                        }
                     }
                 }
+                
+                
+                
+                
+                
             }
             
             
-        
+            alertController.message = "\(joined) Class code = \(code)"
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
             
-        
+            nameData.name = name
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(nameData.name) {
+                nameData.defaults.set(encoded, forKey: "name")
+            }
+            
+            
+            nameData.tOrS = "Student"
+            
+            //let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(nameData.tOrS) {
+                nameData.defaults.set(encoded, forKey: "tOrS")
+            }
+            
+            if let encoded = try? encoder.encode(nameData.tOrS) {
+                nameData.defaults.set(encoded, forKey: "nameIndex")
+            }
         }
-        
-        
-        alertController.message = "\(joined) Class code = \(code)"
-        present(alertController, animated: true) {
-            // optional code for what happens after the alert controller has finished presenting
+        else {
+            alertController.title = "Class not joined"
+            alertController.message = "You are a teacher and can't join a class"
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
         }
-        
-        nameData.name = name
-        
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(nameData.name) {
-                        nameData.defaults.set(encoded, forKey: "name")
-                    }
-        
-        
-        nameData.tOrS = "Student"
-        
-        //let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(nameData.tOrS) {
-                        nameData.defaults.set(encoded, forKey: "tOrS")
-                    }
-        
-        if let encoded = try? encoder.encode(nameData.tOrS) {
-                        nameData.defaults.set(encoded, forKey: "nameIndex")
-                    }
-        
 
 
         
