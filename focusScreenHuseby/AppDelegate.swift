@@ -13,7 +13,8 @@ import FirebaseDatabase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    
+    let defaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -38,8 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         
         if appData.classSelected.canFocus{
-            appData.lockIn = false
-            print("mission flopped")
+           print("Hi")
         }
         
         
