@@ -37,32 +37,43 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
         nameOutlet.text = "\(nameData.name)"
     }
     @IBAction func createClassAction(_ sender: Any) {
+      
+        
         let name = nameOutlet.text ?? ""
         let classname = classNameOutlet.text ?? ""
         
-        var newClass = Classroom(name: name, classname: classname)
-        
-        newClass.saveToFirebase()
-        //print(newClass.key)
-        code = newClass.code
-        
-        nameData.name = name
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(nameData.name) {
-                        nameData.defaults.set(encoded, forKey: "name")
-                    }
-        alertController.message = "Class code = \(code)"
-        present(alertController, animated: true) {
-            // optional code for what happens after the alert controller has finished presenting
+        if appData.tOrS == "Teacher" || appData.tOrS == "None"{
+            var newClass = Classroom(name: name, classname: classname)
+            
+            newClass.saveToFirebase()
+            //print(newClass.key)
+            code = newClass.code
+            
+            nameData.name = name
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(nameData.name) {
+                nameData.defaults.set(encoded, forKey: "name")
+            }
+            alertController.message = "Class code = \(code)"
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
+            
+            
+            nameData.tOrS = "Teacher"
+            
+            //let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(nameData.tOrS) {
+                nameData.defaults.set(encoded, forKey: "tOrS")
+            }
         }
-        
-        
-        nameData.tOrS = "Teacher"
-        
-        //let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(nameData.tOrS) {
-                        nameData.defaults.set(encoded, forKey: "tOrS")
-                    }
+        else {
+            alertController.title = "Error"
+            alertController.message = "Students Cannot Create a Class."
+            present(alertController, animated: true){
+                
+            }
+        }
     }
     
     /*
