@@ -16,6 +16,8 @@ class ViewControllerFocussed: UIViewController {
     
     @IBOutlet weak var classNameOutlet: UILabel!
     
+    @IBOutlet weak var classCodeOut: UILabel!
+    
     @IBOutlet weak var canFocusLabel: UILabel!
     
     let defaults = UserDefaults.standard
@@ -23,6 +25,7 @@ class ViewControllerFocussed: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        classCodeOut.text = "Code: \(appData.classSelected.code)"
         
         ref = Database.database().reference()
         
