@@ -8,7 +8,7 @@
 import UIKit
 //help
 
-class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var alertController: UIAlertController!
 
     
@@ -48,6 +48,9 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        nameOutlet.delegate = self
+        pointsoutlet.delegate = self
         
         if appData.classHasSelected{
             if nameData.tOrS == "Student"{
@@ -173,5 +176,13 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           nameOutlet.resignFirstResponder()
+           pointsoutlet.resignFirstResponder()
+           
+           return true
+       }
+
 
 }
