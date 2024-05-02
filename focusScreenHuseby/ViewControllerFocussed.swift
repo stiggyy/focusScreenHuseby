@@ -127,7 +127,7 @@ class ViewControllerFocussed: UIViewController {
                 print("mission flopped")
                 self.defaults.set(appData.lockIn, forKey: "theLock")
                 if abc{
-                    let alert = UIAlertController(title: "Oops!", message: "Failed to Focus", preferredStyle: .alert)
+                    let alert = UIAlertController(title:  "", message: "End of Focus", preferredStyle: .alert)
                     let action = UIAlertAction(title: "ok", style: .default)
                     alert.addAction(action)
                     self.present(alert, animated: true)
