@@ -126,7 +126,7 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
             alertController = UIAlertController(title: "Bought \(appData.classSelected.store[indexPath.row]) for \(appData.classSelected.storePoints[indexPath.row]) points", message: "Click confirm to close out", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
                 // handle response here.
-                appData.classSelected.studentPoints[nameData.nameIndex] = appData.classSelected.studentPoints[nameData.nameIndex] - appData.classSelected.storePoints[nameData.nameIndex]
+                appData.classSelected.studentPoints[nameData.nameIndex] = appData.classSelected.studentPoints[nameData.nameIndex] - appData.classSelected.storePoints[indexPath.row]
                 
                 appData.classSelected.updateFirebase(dict: appData.classSelected.convertToDict())
                 self.xyz.text = "points : \(appData.classSelected.studentPoints[nameData.nameIndex])"

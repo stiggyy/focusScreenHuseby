@@ -42,7 +42,7 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
         let name = nameOutlet.text ?? ""
         let classname = classNameOutlet.text ?? ""
         
-        if appData.tOrS == "Teacher" || appData.tOrS == "None"{
+        if nameData.tOrS == "Teacher" || nameData.tOrS == "None"{
             var newClass = Classroom(name: name, classname: classname)
             
             newClass.saveToFirebase()
@@ -67,7 +67,7 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
                 nameData.defaults.set(encoded, forKey: "tOrS")
             }
         }
-        else {
+        else { 
             alertController.title = "Error"
             alertController.message = "Students Cannot Create a Class."
             present(alertController, animated: true){
