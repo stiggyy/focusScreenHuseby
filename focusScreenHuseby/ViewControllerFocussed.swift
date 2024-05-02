@@ -107,6 +107,8 @@ class ViewControllerFocussed: UIViewController {
             present(alertController, animated: true)
             
             
+            
+            
         } else {
             if appData.classSelected.canFocus {
                 
@@ -115,6 +117,17 @@ class ViewControllerFocussed: UIViewController {
                 appData.lockIn = true
                 
     
+            } else {
+                alertController.message = "Your teacher has not yet started focus"
+                let endAction = UIAlertAction(title: "Whoops", style: .default) { (action) in
+                    // handle response here.
+                   
+                    
+                    
+                }
+                alertController.addAction(endAction)
+                
+                present(alertController, animated: true)
             }
         }
         
