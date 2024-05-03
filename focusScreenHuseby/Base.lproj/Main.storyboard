@@ -14,20 +14,20 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="focusScreenHuseby" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="kDA-dn-St1">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ym4-GW-Fm6">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="497"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="589.33333333333337"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIm-rR-tM1">
-                                        <rect key="frame" x="0.0" y="497.00000000000006" width="393" height="106.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="589.33333333333337" width="393" height="126.33333333333337"/>
                                         <color key="tintColor" systemColor="systemPurpleColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled">
@@ -45,7 +45,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-A3-UL3">
-                                        <rect key="frame" x="0.0" y="603.66666666666663" width="393" height="106.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="715.66666666666663" width="393" height="126.33333333333337"/>
                                         <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled">
@@ -80,10 +80,11 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="Xxh-Gp-4eg"/>
+                    <navigationItem key="navigationItem" id="eoy-zm-Fu7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028.2442748091603" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="764" y="14"/>
         </scene>
         <!--My Classes-->
         <scene sceneID="zZX-BN-DwB">
@@ -125,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLq-N7-cTV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="655"/>
+            <point key="canvasLocation" x="-381" y="739"/>
         </scene>
         <!--View Controller Focussed-->
         <scene sceneID="TlP-y4-3li">
@@ -265,6 +266,7 @@
                     <connections>
                         <outlet property="classNameOutlet" destination="WMi-A4-LkO" id="GBn-2M-Iao"/>
                         <outlet property="nameOutlet" destination="UvM-BE-vrS" id="o39-Di-w17"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToMain" id="6aO-R5-pdM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eir-tN-5PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -350,19 +352,19 @@
                                         <rect key="frame" x="0.0" y="34" width="393" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-if-AqT">
-                                                <rect key="frame" x="0.0" y="0.0" width="279.66666666666669" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
                                                 <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDS-ky-JxI">
-                                                <rect key="frame" x="279.66666666666669" y="0.0" width="38.333333333333314" height="34"/>
+                                                <rect key="frame" x="300" y="0.0" width="38.333333333333314" height="34"/>
                                                 <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHT-uK-EGh">
-                                                <rect key="frame" x="318" y="0.0" width="75" height="34"/>
+                                                <rect key="frame" x="338.33333333333331" y="0.0" width="54.666666666666686" height="34"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Button">
+                                                <buttonConfiguration key="configuration" style="tinted" title="Add">
                                                     <attributedString key="attributedSubtitle"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -534,6 +536,9 @@
             <point key="canvasLocation" x="977.86259541984725" y="665.49295774647885"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6aO-R5-pdM"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="gear" catalog="system" width="128" height="122"/>

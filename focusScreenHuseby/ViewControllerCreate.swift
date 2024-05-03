@@ -19,7 +19,10 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         alertController = UIAlertController(title: "Class created", message: "Class code: \(code)", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "EPIC", style: .default) { (action) in
+        let OKAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+            
+            self.dismiss(animated: true, completion: nil)
+           // self.performSegue(withIdentifier: "backToMain", sender: self)
             // handle response here.
             
         }
@@ -55,9 +58,6 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
                 nameData.defaults.set(encoded, forKey: "name")
             }
             alertController.message = "Class code = \(code)"
-            present(alertController, animated: true) {
-                // optional code for what happens after the alert controller has finished presenting
-            }
             
             
             nameData.tOrS = "Teacher"
@@ -66,6 +66,10 @@ class ViewControllerCreate: UIViewController, UITextFieldDelegate {
             if let encoded = try? encoder.encode(nameData.tOrS) {
                 nameData.defaults.set(encoded, forKey: "tOrS")
             }
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
+            }
+            
         }
         else { 
             alertController.title = "Error"

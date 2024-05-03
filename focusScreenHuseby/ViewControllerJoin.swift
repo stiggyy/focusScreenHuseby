@@ -18,7 +18,8 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         alertController = UIAlertController(title: "Class joined", message: "YAY", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "EPIC", style: .default) { (action) in
+        let OKAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
             // handle response here.
             
         }
@@ -67,9 +68,7 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
             
             
             alertController.message = "\(joined) Class code = \(code)"
-            present(alertController, animated: true) {
-                // optional code for what happens after the alert controller has finished presenting
-            }
+            
             
             nameData.name = name
             
@@ -88,6 +87,9 @@ class ViewControllerJoin: UIViewController, UITextFieldDelegate {
             
             if let encoded = try? encoder.encode(nameData.tOrS) {
                 nameData.defaults.set(encoded, forKey: "nameIndex")
+            }
+            present(alertController, animated: true) {
+                // optional code for what happens after the alert controller has finished presenting
             }
         }
         else {

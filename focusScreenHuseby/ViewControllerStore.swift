@@ -154,8 +154,16 @@ class ViewControllerStore: UIViewController, UITableViewDelegate, UITableViewDat
                 appData.classSelected.updateFirebase(dict: appData.classSelected.convertToDict())
                 tableView.reloadData()
             }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            }
+            
+            let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
+            }
             // add the OK action to the alert controller
             alertController.addAction(OKAction)
+            alertController.addAction(cancelAction)
+            alertController.addAction(editAction)
             
             present(alertController, animated: true) {
                 // optional code for what happens after the alert controller has finished presenting

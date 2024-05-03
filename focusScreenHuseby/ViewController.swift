@@ -69,7 +69,7 @@ class Classroom{
         if let storeList = dict["storeList"] as? [String]{
             self.store = storeList
         } else {
-            self.store = [""]
+            self.store = ["Smile :)"]
         }
         if let sPoints = dict["sPoints"] as? [Int]{
             self.storePoints = sPoints
